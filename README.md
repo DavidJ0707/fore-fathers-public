@@ -13,7 +13,7 @@ Fore Fathers is a full-stack web app that tracks matches, players, and performan
 - Player profiles with performance stats
 - Dashboard with league standings
 - Match detail pages with team breakdowns
-- 🗄Fully connected backend with MongoDB
+- Fully connected backend with MongoDB
 
 ---
 
