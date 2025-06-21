@@ -1,7 +1,7 @@
 <p align="center">
   <img src="client/public/icon2.png" alt="Fore Fathers Logo" width="200"/>
 </p>
-# ⛳ Fore Fathers Golf League Tracker
+ ⛳ Fore Fathers Golf League Tracker
 
 Fore Fathers is a full-stack web app that tracks matches, players, and performance statistics for a weekly golf league. Built for a group of golfing buddies, this app brings stats into one centralized platform.
 
