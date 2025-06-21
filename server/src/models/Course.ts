@@ -7,7 +7,7 @@ const holeSchema = new mongoose.Schema({
 });
 
 const TeeBoxSchema = new mongoose.Schema({
-  teeColor: { type: String, required: true }, // e.g., 'White', 'Blue'
+  teeColor: { type: String, required: true },
   courseRating: { type: Number, required: true },
   slopeRating: { type: Number, required: true },
   par: { type: Number, required: true },

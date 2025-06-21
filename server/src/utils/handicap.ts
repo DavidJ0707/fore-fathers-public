@@ -2,7 +2,7 @@ export function calculateScoreDifferential(
   adjustedGrossScore: number,
   courseRating: number,
   slopeRating: number,
-  pcc: number = 0 // optional, default to 0 if not tracked
+  pcc: number = 0
 ): number {
   return ((adjustedGrossScore - courseRating - pcc) * 113) / slopeRating;
 }

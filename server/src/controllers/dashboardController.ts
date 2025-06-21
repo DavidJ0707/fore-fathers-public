@@ -13,7 +13,6 @@ export const getStandings = async (req: Request, res: Response) => {
       handicap: p.currentHandicap || 0,
     }));
 
-    // Sort by most wins → fewest losses → lowest handicap
     standings.sort((a, b) => {
       if (b.wins !== a.wins) return b.wins - a.wins;
       if (a.losses !== b.losses) return a.losses - b.losses;

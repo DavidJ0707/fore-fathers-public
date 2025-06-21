@@ -134,14 +134,12 @@ await mongoose.connect(MONGO_URI);
   const teamTotals: Record<string, number> = {};
   const teamScores: Record<string, number[]> = {};
 
-  // Always calculate individual scores
   for (const hole of holes) {
     for (const s of hole.scores) {
       totalScores[s.playerId] = (totalScores[s.playerId] || 0) + s.strokes;
     }
   }
 
-  // Then calculate team scores based on match type
   if (format === 'shamble' && scoringType === 'teams_4v4') {
     for (const hole of holes) {
       const holeScores: Record<string, number[]> = {};
@@ -262,7 +260,7 @@ await mongoose.connect(MONGO_URI);
             const best8 = [...diffs].sort((a, b) => a - b).slice(0, 8);
             const handicapIndex = best8.reduce((sum, d) => sum + d, 0) / best8.length;
 
-            doc.currentHandicap = Math.min(Math.round(handicapIndex * 10) / 10, 54); // ⛳️ apply max limit
+            doc.currentHandicap = Math.min(Math.round(handicapIndex * 10) / 10, 54);
         }
     }
 

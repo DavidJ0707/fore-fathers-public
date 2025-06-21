@@ -1,12 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 export default function MatchDetail() {
   const { matchId } = useParams();
   const [match, setMatch] = useState<any>(null);
 
   useEffect(() => {
-    fetch(`/api/matches/${matchId}`)
+    fetch(`${baseUrl}/api/matches/${matchId}`)
       .then(res => res.json())
       .then(data => {
         console.log('Fetched match:', data);

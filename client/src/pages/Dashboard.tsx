@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 export default function Dashboard() {
   const [upcomingMatch] = useState({
-    course: 'TBD',
-    date: '2025-06-21',
+    course: 'Beacon Woods',
+    date: '2025-06-23',
   });
 
   const [standings, setStandings] = useState<any[]>([]);
@@ -12,12 +14,11 @@ export default function Dashboard() {
   const [sortBy, setSortBy] = useState<'wins' | 'handicap'>('wins');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
-
   useEffect(() => {
     async function fetchData() {
       try {
-        const standingsRes = await fetch(`/api/dashboard/standings`);
-        const matchesRes = await fetch(`/api/matches?limit=3`);
+        const standingsRes = await fetch(`${baseUrl}/api/dashboard/standings`);
+        const matchesRes = await fetch(`${baseUrl}/api/matches?limit=3`);
 
         if (!standingsRes.ok || !matchesRes.ok) throw new Error('Failed to fetch data');
         const standingsData = await standingsRes.json();
@@ -50,7 +51,6 @@ export default function Dashboard() {
         return factor * (aHcp - bHcp);
         }
 
-        // Default sort: wins desc, then losses asc
         if (b.wins !== a.wins) return factor * (b.wins - a.wins);
         return factor * (a.losses - b.losses);
     });
@@ -64,7 +64,7 @@ export default function Dashboard() {
         <h2 className="text-xl font-bold mb-2 border-b pb-1 text-[#3B7A57]">Upcoming Match</h2>
         <div className="mt-2 text-base space-y-1">
             <p><strong>Course:</strong> {upcomingMatch.course}</p>
-            <p><strong>Date:</strong> {new Date(upcomingMatch.date).toLocaleDateString()}</p>
+            <p><strong>Date:</strong> {new Date(upcomingMatch.date).toLocaleDateString()} @ 1:04pm & 1:12pm</p>
         </div>
         </section>
 

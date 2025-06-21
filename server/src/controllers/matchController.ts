@@ -1,4 +1,3 @@
-// src/controllers/matchController.ts
 import { Request, Response } from 'express';
 import { RequestHandler } from 'express';
 import Match from '../models/Match';
@@ -6,7 +5,7 @@ import Course from '../models/Course';
 
 export const getAllMatches: RequestHandler = async (req, res) => {
   const matches = await Match.find()
-    .sort({ date: -1 }) // 👈 newest to oldest
+    .sort({ date: -1 })
     .populate('courseId')
     .populate('teams.playerIds')
     .populate('winners');

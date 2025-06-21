@@ -10,6 +10,8 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 export default function PlayerProfile() {
   const { playerId } = useParams();
   const [player, setPlayer] = useState<any>(null);
@@ -17,13 +19,13 @@ export default function PlayerProfile() {
 
   useEffect(() => {
     async function fetchPlayerStats() {
-      const res = await fetch(`/api/players/${playerId}`);
+      const res = await fetch(`${baseUrl}/api/players/${playerId}`);
       const data = await res.json();
       setPlayer(data);
 
       const matchDetails = await Promise.all(
         data.matchHistory.map((matchId: string) =>
-          fetch(`/api/matches/${matchId}`).then(res => res.json())
+          fetch(`${baseUrl}/api/matches/${matchId}`).then(res => res.json())
         )
       );
       setMatches(
@@ -80,7 +82,7 @@ export default function PlayerProfile() {
         ))}
       </div>
 
-      {/* Handicap Differential Graph Section */}
+      {/* Handicap Differential Graph */}
       <section className="bg-white p-4 rounded-xl shadow">
         <h2 className="text-2xl font-bold mb-4 border-b pb-2">📉 Handicap Trend</h2>
         <ResponsiveContainer width="100%" height={300}>
@@ -94,7 +96,7 @@ export default function PlayerProfile() {
         </ResponsiveContainer>
       </section>
 
-      {/* Match History Section */}
+      {/* Match History */}
       <section>
         <h2 className="text-2xl font-bold mt-8 mb-4 border-b pb-2">📝 Match History</h2>
         <div className="space-y-3">

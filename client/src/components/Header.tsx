@@ -5,8 +5,8 @@ import { Menu, X } from 'lucide-react';
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const activeLink = 'text-[#3B7A57] font-semibold'; // golf green
-  const hoverLink = 'hover:text-[#4C9A6A]'; // lighter green hover
+  const activeLink = 'text-[#3B7A57] font-semibold';
+  const hoverLink = 'hover:text-[#4C9A6A]';
 
   return (
     <header className="bg-gray-900/90 backdrop-blur-sm text-white shadow sticky top-0 z-50">

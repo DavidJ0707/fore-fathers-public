@@ -1,4 +1,3 @@
-// src/models/Match.ts
 import mongoose from 'mongoose';
 import '../models/Course'
 
@@ -32,7 +31,7 @@ const MatchSchema = new mongoose.Schema({
   },
   teamScores: {
     type: Map,
-    of: [Number], // per-hole team scores
+    of: [Number],
   },
   teams: [
     {
