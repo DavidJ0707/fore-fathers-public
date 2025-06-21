@@ -32,6 +32,6 @@ Fore Fathers is a full-stack web app that tracks matches, players, and performan
 
 ## 📁 Project Structure
 
-── client/ # React + Vite frontend
-── server/ # Express + MongoDB backend
-── README.md
+- client/ # React + Vite frontend
+- server/ # Express + MongoDB backend
+- README.md
