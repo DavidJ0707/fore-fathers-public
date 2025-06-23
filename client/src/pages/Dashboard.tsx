@@ -5,8 +5,8 @@ const baseUrl = import.meta.env.VITE_API_URL;
 
 export default function Dashboard() {
   const [upcomingMatch] = useState({
-    course: 'Beacon Woods',
-    date: '2025-06-23',
+    course: 'TBD',
+    date: '2025-06-30',
   });
 
   const [standings, setStandings] = useState<any[]>([]);
@@ -64,7 +64,7 @@ export default function Dashboard() {
         <h2 className="text-xl font-bold mb-2 border-b pb-1 text-[#3B7A57]">Upcoming Match</h2>
         <div className="mt-2 text-base space-y-1">
             <p><strong>Course:</strong> {upcomingMatch.course}</p>
-            <p><strong>Date:</strong> {new Date(upcomingMatch.date).toLocaleDateString()} @ 1:04pm & 1:12pm</p>
+            <p><strong>Date:</strong> {new Date(upcomingMatch.date).toLocaleDateString()} @ TBD</p>
         </div>
         </section>
 

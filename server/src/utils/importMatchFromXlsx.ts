@@ -8,7 +8,7 @@ import Match from '../models/Match';
 
 dotenv.config();
 const MONGO_URI = process.env.MONGO_URI;
-const MATCH_FILE = path.resolve(__dirname, '../uploads/06-15-2025-stroke.xlsx');
+const MATCH_FILE = path.resolve(__dirname, '../uploads/06-22-2025-shamble.xlsx');
 
 type TeamKey = 'A' | 'B' | 'C' | 'D';
 

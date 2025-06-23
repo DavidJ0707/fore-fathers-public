@@ -72,8 +72,19 @@ export default function PlayerProfile() {
           { label: 'Avg Score', value: player.stats?.averageScore ?? 'N/A' },
           {
             label: 'Scramble Shots Used',
-            value: `${player.stats?.scrambleShotsUsed}/${player.stats?.maxScrambleShots || 0}`,
+            value:
+              player.stats?.maxScrambleShots && player.stats.maxScrambleShots > 0
+                ? `${Math.round((player.stats.scrambleShotsUsed / player.stats.maxScrambleShots) * 100)}%`
+                : '-',
           },
+          {
+            label: 'Fairways Hit',
+            value:
+              player.stats?.maxFairways && player.stats.maxFairways > 0
+                ? `${Math.round((player.stats.fairwaysHit / player.stats.maxFairways) * 100)}%`
+                : '-',
+          },
+
         ].map((stat, idx) => (
           <div key={idx} className="bg-white p-4 rounded-xl shadow">
             <p className="text-gray-500 text-sm">{stat.label}</p>
