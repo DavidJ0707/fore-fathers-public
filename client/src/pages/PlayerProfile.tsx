@@ -67,7 +67,14 @@ export default function PlayerProfile() {
       {/* Stats Summary */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center">
         {[
-          { label: 'Current Handicap', value: player.currentHandicap },
+          {
+            label: 'Current Handicap',
+            value: player.currentHandicap != null ? player.currentHandicap : 'TBD',
+          },
+          {
+            label: 'FF Rating',
+            value: player.ffRating != null ? player.ffRating.toFixed(1) : 'N/A',
+          },
           { label: 'Wins', value: player.wins },
           { label: 'Losses', value: player.losses },
           { label: 'Avg Score', value: player.stats?.averageScore ?? 'N/A' },
