@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import MatchCard from '../components/MatchCard';
 import { Link } from 'react-router-dom';
 
 const baseUrl = import.meta.env.VITE_API_URL;
@@ -132,43 +133,9 @@ export default function Dashboard() {
     <section>
     <h2 className="text-2xl font-bold mb-4 text-[#3B7A57]">Recent Matches</h2>
     <div className="space-y-4">
-        {recentMatches.map((match: any) => (
-            <Link
-            key={match._id}
-            to={`/matches/${match._id}`}
-            className="relative block bg-white border border-gray-200 rounded-xl shadow-md px-6 py-4 hover:shadow-lg hover:bg-[#f9fdfb] transition duration-200"
-            >
-
-            {/* Match Info */}
-            <div>
-            <h3 className="text-lg font-semibold">
-                {match.format.toUpperCase()} · {new Date(match.date).toLocaleDateString()}
-            </h3>
-            <p className="text-sm text-gray-600">
-                {match.courseId?.name || 'Course'} · {(match.scoringType || '').replace(/^teams_/, '')}
-            </p>
-            </div>
-
-            {/* Winner Avatars - Positioned to bottom right */}
-            <div className="absolute bottom-3 right-4 flex -space-x-3">
-            {match.winners.map((w: any, i: number) => {
-                const name = typeof w === 'string' ? w : w.name;
-                return (
-                <img
-                    key={i}
-                    src={getAvatarUrl(name)}
-                    alt={name}
-                    title={name}
-                    className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm"
-                    onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/avatars/default.png';
-                    }}
-                />
-                );
-            })}
-            </div>
-        </Link>
-        ))}
+      {recentMatches.map((match) => (
+        <MatchCard key={match._id} match={match} />
+      ))}
     </div>
 
     {/* View All Button */}

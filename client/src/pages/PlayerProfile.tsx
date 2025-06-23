@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   LineChart,
   Line,
@@ -9,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
+import MatchCard from '../components/MatchCard';
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
@@ -111,58 +112,15 @@ export default function PlayerProfile() {
       <section>
         <h2 className="text-2xl font-bold mt-8 mb-4 border-b pb-2">📝 Match History</h2>
         <div className="space-y-3">
-          {matches.map((match: any) => {
-            const playerName = player.name;
-            const isWinner = match.winners?.some((w: any) =>
-              typeof w === 'string' ? w === playerName : w.name === playerName
-            );
-
-            return (
-              <Link
-                key={match._id}
-                to={`/matches/${match._id}`}
-                className={`relative block border rounded-lg shadow px-4 py-3 hover:bg-gray-50 transition ${
-                  isWinner ? 'bg-green-50 border-green-300' : 'bg-red-50 border-red-300'
-                }`}
-              >
-                {/* W/L Badge */}
-                <div className={`absolute top-3 right-4 text-xs font-bold px-2 py-1 rounded-full shadow ${
-                  isWinner ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-                }`}>
-                  {isWinner ? 'W' : 'L'}
-                </div>
-
-                {/* Match Details */}
-                <div>
-                  <h3 className="text-lg font-semibold">
-                    {match.format.toUpperCase()} · {new Date(match.date).toLocaleDateString()}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {match.courseId?.name || 'Course'} · {(match.scoringType || '').replace(/^teams_/, '')}
-                  </p>
-                </div>
-
-                {/* Winner Avatars */}
-                <div className="absolute bottom-3 right-12 flex -space-x-3">
-                  {match.winners?.map((w: any, i: number) => {
-                    const name = typeof w === 'string' ? w : w.name;
-                    return (
-                      <img
-                        key={i}
-                        src={`/avatars/${name}.jpg`}
-                        alt={name}
-                        title={name}
-                        className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/avatars/default.png';
-                        }}
-                      />
-                    );
-                  })}
-                </div>
-              </Link>
-            );
-          })}
+          {matches.map((match) => (
+            <MatchCard
+              key={match._id}
+              match={match}
+              playerName={player.name}
+              showWLBadge={true}
+              avatarOffset="right-12"
+            />
+          ))}
         </div>
       </section>
     </div>
